@@ -1,21 +1,26 @@
+$def with(form)
 <!DOCTYPE HTML>
-<meta name=¡±viewport¡± content=¡±width=device-width, initial-scale=1¡å />
+<meta name="viewport" content="width=device-width, initial-scale=1;charset=utf-8"/>
 <html>
 <body>
 
-<video controls="controls">
-  <source src="movie.ogg" type="video/ogg">
-  <source src="movie.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
+	<video controls="controls">
+	  <source src="movie.ogg" type="video/ogg">
+	  <source src="movie.mp4" type="video/mp4">
+	Your browser does not support the video tag.
+	</video>
+	<div>
+		<br><label><input type="radio" name="S5" value="5"/>éå¸¸åŒæ„</label></br>
+		<br><label><input type="radio" name="S4" value="4"/>æ¯”è¾ƒåŒæ„</label></br>
+		<br><label><input type="radio" name="S3" value="3"/>å·®ä¸å¤š</label></br>
+		<br><label><input type="radio" name="S2" value="2"/>ä¸€ç‚¹åŒæ„</label></br>
+		<br><label><input type="radio" name="S1" value="1"/>ä¸åŒæ„</label></br>
+	</div>
+	
 
-<div>
-	<br><label><input type="radio" name="S5" value="5"/>·Ç³£Í¬Òâ</label></br>
-	<br><label><input type="radio" name="S4" value="4"/>±È½ÏÍ¬Òâ</label></br>
-	<br><label><input type="radio" name="S3" value="3"/>²î²»¶à</label></br>
-	<br><label><input type="radio" name="S2" value="2"/>Ò»µãÍ¬Òâ</label></br>
-	<br><label><input type="radio" name="S1" value="1"/>²»Í¬Òâ</label></br>
-</div>
-
+	<h1>Register</h1>
+	<form method="POST">
+		$:form.render()
+	</form>
 </body>
 </html>
