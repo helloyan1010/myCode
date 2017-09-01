@@ -1,0 +1,20 @@
+$def with (form)
+<!DOCTYPE HTML>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<html>
+<head>
+ <link rel="stylesheet" href="/static/css/common.css" type="text/css" > 
+ <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script> 
+</head>
+<body>
+	<h1>胖胖虎老师的TOPK测试</h1>
+	<p>这是一段描述文字的占位符：请仔细阅读每一道题目，然后做出选择。blablablabla, 胖胖老师很爱他老婆，胖胖老师很爱他老婆，胖胖老师很爱他老婆。</p>
+	<div class="basicInfo">
+		<form name="main" method="post"> 
+		$if not form.valid: <p class="error">明显不对啊，重试一下呗~</p>
+		$:form.render()
+		</form>
+	</div>
+	
+</body>
+</html>
