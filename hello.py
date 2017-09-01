@@ -7,6 +7,13 @@ render = web.template.render('template/') # your templates
 
 db=web.database(dbn='postgres',user='postgres',pw='akefeifei',db='ppt')
 
+
+##GLOBAL PARAM
+global stu_id
+stu_id=0
+global page_no
+page_no=1
+
 vpass = form.regexp(r".{3,20}$", 'must be between 3 and 20 characters')
 vname = form.regexp(r".{1,10}$", '名字长度不可为空，也不可超过10个字。')
 ##vemail = form.regexp(r".*@.*", "must be a valid email address")
@@ -38,22 +45,95 @@ register_form = form.Form(
 
 
 urls=(
-    '/index','index'
+    '/list','list',
+    '/index','index',
+    '/result','result'
       )
 
 app=web.application(urls,globals())
 
 class index:
     def GET(self):
-        # do $:f.render() in the template
+        
         f = register_form()
         return render.topk1st(f)
 
     def POST(self):
-        f = register_form()
-        return None
-    ##render.topk1st(f)
         
+        global page_no,stu_id
+        
+        i=web.input()
+        ## TODO: need to update with openId;
+        selectvar=dict(name=i.get("username"))
+        stus=db.select('students',selectvar,where="name=$name")
+        counter=0
+        
+        
+        for stu in stus:
+            counter=counter+1
+            stu_id=stu.id
+            
+        print( "the student counter is : %d" % (counter))
+        
+        if(counter==0):
+            ## TODO: openId needed.
+            n=db.insert('students',name=i.get("username"),age=i.get("age"),
+                    star_sign=i.get("starsign"),gender=i.get("gender"))
+            stu_id=n
+            print("INsert STU id is: %d" % (n))
+            raise web.seeother('/list?no=1')
+        else:
+                scorevar=dict(sid=stu_id)
+                scores=db.select('topk_score',scorevar,where="stu_id=$sid")
+                counter1=0
+                for score in scores:
+                    counter1=counter1+1
+                ## TODO: need update params
+                if(counter1==0):
+                    raise web.seeother('/list')
+                else:
+                    raise web.seeother('/result')
+    
+
+class list:
+    def GET(self):
+        global page_no
+        local_no=web.input()
+        page_no=int(local_no.get("no"))
+        ##itemsvar=dict(id=no.get("no"))
+        items=db.query('select * from items where id=$id',vars={'id':page_no})
+
+        ##TODO： why not itmes[0].id doesn'twork?
+        for item in items:
+            print(item)
+            print("items id:%s ,title:%s" % (item.id,item.title))
+            item=dict(no=item.id,title=item.title)
+            return render.list(item)
+        
+    def POST(self):
+        
+        global page_no,stu_id
+        
+        i=web.input()
+        print "****"
+        print stu_id
+        print "****"
+        n=db.insert('topk_detail',stu_id=stu_id,item_score=i.get("answer"),
+                    item_no=page_no)
+        
+        page_no=page_no+1
+        
+        print "****"
+        print page_no
+        print "****"
+        string='/list?no='+str(page_no)
+        raise web.seeother(string)
+    ##render.topk1st(f)
+
+class result:
+    def GET(self):
+        return render.result()
+
 
 if __name__=="__main__":
     web.internalerror=web.debugerror
