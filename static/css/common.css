@@ -3,6 +3,9 @@ font-family: Arial;}
 label{color:red;
 font-family: Arial;
 }
+button#submit{
+	 ground:url("/static/pic/start.jpg")
+}
 
 @media screen and (min-width: 320px)  {
     .mine_coupon_words {
