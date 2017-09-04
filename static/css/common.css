@@ -108,9 +108,9 @@ width:100%;
 
 .title{
 color:#373737;
-font-size: 32px;
+font-size: 26px;
 font-family:Microsoft YaHei;
-margin:0 auto;
+text-align:center;
 margin-top:30px;
 margin-bottom:30px;
 }
@@ -128,22 +128,26 @@ margin-right:10px;
 margin:0 auto;
 }
 
+.start{	
+text-align:center;
+}
 #username, #age,#gender,#starsign,#area{
 font-family:Microsoft YaHei;
 font-size: 16px;
 width:200px;
 margin:0 auto;
+margin-left:20px;
 margin-top:20px;
 border-bottom:1.5px solid #a9a9a9;
 padding-bottom:3px;
 padding-left:10px;
 }
 
+
 #start{
 	height:60px;
 	width:250px;
 	background: url("/static/pic/start.png") no-repeat ;
-	margin-left:150px;
 	margin-top: 50px;
 }
 
