@@ -125,7 +125,7 @@ margin-left:10px;
 margin-right:10px;	
 }
 .basicInfo{	
-margin:0 auto;
+text-align:center;
 }
 
 .start{	
@@ -150,4 +150,26 @@ padding-left:10px;
 	background: url("/static/pic/start.png") no-repeat ;
 	margin-top: 50px;
 }
+.roleOpt{
+	margin-top:20px;
+}
 
+.answer{
+	height:25px;
+	width:280px;
+	background-color:#eeeeee;
+	margin-left:20px;
+	margin-top:5px;
+	margin-bottom:0px;
+	font-family:Microsoft YaHei;
+	padding-bottom:0px;
+}
+label{
+	margin-left:20px;
+}
+
+.radioAnswer{
+	margin-top:6px;
+	margin-left:10px;
+	-color:#ffffff;
+}
