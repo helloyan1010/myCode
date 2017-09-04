@@ -108,7 +108,7 @@ width:100%;
 
 .title{
 color:#373737;
-font-size: 26px;
+font-size: 24px;
 font-family:Microsoft YaHei;
 text-align:center;
 margin-top:30px;
@@ -134,7 +134,7 @@ text-align:center;
 #username, #age,#gender,#starsign,#area{
 font-family:Microsoft YaHei;
 font-size: 16px;
-width:200px;
+width:300px;
 margin:0 auto;
 margin-left:20px;
 margin-top:20px;
@@ -146,7 +146,7 @@ padding-left:10px;
 
 #start{
 	height:60px;
-	width:250px;
+	width:200px;
 	background: url("/static/pic/start.png") no-repeat ;
 	margin-top: 50px;
 }
