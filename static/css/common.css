@@ -155,23 +155,23 @@ padding-left:10px;
 }
 
 .answer{
+	font-family:Microsoft YaHei;
+	font-size: 16px;
 	height:40px;
 	width:280px;
 	background-color:#eeeeee;
-	margin-left:20px;
 	margin-top:5px;
+	margin-left:20px;
 	margin-bottom:0px;
 	font-family:Microsoft YaHei;
 	padding-bottom:0px;
-}
-label{
-	margin-left:20px;
-	vertical-align:middle;
+	padding-top:5px;
 }
 
 .radioAnswer{
-	margin-top:6px;
 	margin-left:10px;
+	margin-right:20px;
 	background-color:#ffffff;
 	vertical-align:middle;
+	
 }
