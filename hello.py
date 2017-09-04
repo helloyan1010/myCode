@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 import web
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 from web import form
 import psycopg2
 

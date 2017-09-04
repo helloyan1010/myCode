@@ -155,7 +155,7 @@ padding-left:10px;
 }
 
 .answer{
-	height:25px;
+	height:40px;
 	width:280px;
 	background-color:#eeeeee;
 	margin-left:20px;
@@ -166,10 +166,12 @@ padding-left:10px;
 }
 label{
 	margin-left:20px;
+	vertical-align:middle;
 }
 
 .radioAnswer{
 	margin-top:6px;
 	margin-left:10px;
-	-color:#ffffff;
+	background-color:#ffffff;
+	vertical-align:middle;
 }
