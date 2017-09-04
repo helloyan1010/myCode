@@ -75,11 +75,12 @@ h1, h2, h3, h4, h5, h6
 	margin: 20px 0 10px 0;
 }
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td, textarea, input { font-family: 'Open Sans', sans-serif; font-weight: normal; }
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td, textarea, input
+ { font-family: 'Open Sans', sans-serif; font-weight: normal; }
 
 h1, h2, h3
 {
-	font-size: 18px;
+	font-size: 16px;
 }
 h5, h6
 {
@@ -103,5 +104,45 @@ img {
 height: auto; 
 width: auto\9; 
 width:100%; 
+}
+
+.title{
+color:#373737;
+font-size: 32px;
+font-family:Microsoft YaHei;
+margin:0 auto;
+margin-left:100px;
+margin-top:30px;
+margin-bottom:30px;
+}
+
+.descrip{
+color:#373737;
+font-size: 14px;
+font-family:Microsoft YaHei;
+margin:0 auto;
+margin-top:20px;
+margin-left:30px;
+margin-right:30px;	
+}
+
+#username, #age,#gender,#starsign,#area{
+font-family:Microsoft YaHei;
+font-size: 16px;
+width:400px;
+margin:0 auto;
+margin-top:20px;
+margin-left:70px;
+border-bottom:1.5px solid #a9a9a9;
+padding-bottom:3px;
+padding-left:10px;
+}
+
+#start{
+	height:60px;
+	width:250px;
+	background: url("/static/pic/start.png") no-repeat ;
+	margin-left:150px;
+	margin-top: 50px;
 }
 
