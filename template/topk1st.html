@@ -1,20 +1,118 @@
-$def with (form)
+
 <!DOCTYPE HTML>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <html>
 <head>
  <link rel="stylesheet" href="/static/css/common.css" type="text/css" > 
  <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script> 
+ <link rel="stylesheet" type="text/css" href="/static/picker/stylesheets/reset.css">
+ <link rel="stylesheet" type="text/css" href="/static/picker/stylesheets/normalize.css" media="screen">
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+ <link rel="stylesheet" type="text/css" href="/static/picker/stylesheets/stylesheet.css" media="screen">
+ <link rel="stylesheet" type="text/css" href="/static/picker/stylesheets/github-light.css" media="screen">
 </head>
 <body>
-	<h1>胖胖虎老师的TOPK测试</h1>
-	<p>这是一段描述文字的占位符：请仔细阅读每一道题目，然后做出选择。blablablabla, 胖胖老师很爱他老婆，胖胖老师很爱他老婆，胖胖老师很爱他老婆。</p>
+	<img class="topimg" src="/static/pic/img.png"/>
+	<h1>TOPK测试</h1>
+	<p class="descrip">在做本题之前，请先调整坐姿，保持自然放松的姿势，深呼吸20次，深呼吸的时候，告诉自己，你会平静认真的对待本题，慎重选择，每一个选择都是负责任并且不可更改的。。</p>
 	<div class="basicInfo">
 		<form name="main" method="post"> 
-		$if not form.valid: <p class="error">明显不对啊，重试一下呗~</p>
-		$:form.render()
+			<input type="text" name="username" id="username" placeholder="请填写你的真实姓名"/>
+			<br/>
+			<input type="text" name="age" id="age" placeholder="请填写你的年龄"/>
+			<br/>			
+			<input type="text" name="gender" id="gender" placeholder="请填写性别" />
+			<br/>			
+			<input type="text" name="startsign" id="startsign" placeholder="请填写星座"/>
+			<br/>
+			<input type="text" name="area" id="area" placeholder="请填写省市"/>
+			<br/>
+			<input type="submit" id="start" name="start" action="/index" />
 		</form>
 	</div>
 	
 </body>
+ <script src="/static/picker/scripts/picker.min.js"></script>
+ <script>
+	
+  var data1 = [
+    {
+      text: '男',
+      value: 'M'
+    }, {
+      text: '女',
+      value: 'F'
+    }
+	];
+	var data2 = [
+    {
+      text: '摩羯座',
+      value: '摩羯座'
+    }, {
+      text: '水瓶座',
+      value: '水瓶座'
+    },
+    {
+      text: '双鱼座',
+      value: '双鱼座'
+    }, {
+      text: '白羊座',
+      value: '白羊座'
+    },
+    {
+      text: '金牛座',
+      value: '金牛座'
+    }, {
+      text: '双子座',
+      value: '双子座'
+    }
+	];
+	
+	
+  var picker1El = document.getElementById('gender');
+  var picker2El = document.getElementById('startsign');
+  
+  var picker1 = new Picker({
+    data: [data1]
+  });
+
+  picker1.on('picker.select', function (selectedVal, selectedIndex) {
+    picker1El.value = data1[selectedIndex[0]].text;
+  });
+
+  picker1.on('picker.change', function (index, selectedIndex) {
+    console.log(index);
+  });
+
+  picker1.on('picker.valuechange', function (selectedVal, selectedIndex) {
+    console.log(selectedVal);
+  });
+
+  var picker2 = new Picker({
+    data: [data2]
+  });
+
+  picker2.on('picker.select', function (selectedVal, selectedIndex) {
+    picker2El.value = data2[selectedIndex[0]].text;
+  });
+
+  picker2.on('picker.change', function (index, selectedIndex) {
+    console.log(index);
+  });
+
+  picker2.on('picker.valuechange', function (selectedVal, selectedIndex) {
+    console.log(selectedVal);
+  });
+  
+   picker1El.addEventListener('click', function () {
+    picker1.show();
+  });
+
+  picker2El.addEventListener('click', function () {
+    picker2.show();
+  });
+
+ </script>
+ <script type="text/javascript" src="/static/picker/city/city.js"></script>
+ <script type="text/javascript" src="/static/picker/city/index.js"></script>
 </html>

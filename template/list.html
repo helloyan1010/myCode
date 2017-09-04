@@ -1,6 +1,5 @@
-$def with(item)
 <!DOCTYPE HTML>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0"/>
 <html>
 <head>
  <link rel="stylesheet" href="/static/css/common.css" type="text/css" > 
@@ -9,14 +8,14 @@ $def with(item)
 </head>
 <body>
 	<p class="item">
-		<label>$item['no'] . $item['title']</label>
+		<label>1、你有一个机会成为以下的一个角色，会成为这个角色很长时间，它可能是几年、几十年甚至一辈子，选择了就不能更改。因此，选择必须要慎重，要考虑清楚是什么原因让你选择这个角色。</label>
 	</p>
 	<form id="myForm" method="post" action="/list">
-		<input type="radio" name="answer" value="5" onclick="change()"/><label>非常同意</label><br/>
-		<input type="radio" name="answer" value="4" onclick="change()"/><label>比较同意</label><br/>
-		<input type="radio" name="answer" value="3" onclick="change()"/><label>差不多</label><br/>
-		<input type="radio" name="answer" value="2" onclick="change()"/><label>一点同意</label><br/>
-		<input type="radio" name="answer" value="1" onclick="change()"/><label>不同意</label><br/>
+		<input type="radio" name="answer" value="5" onclick="change()"/><label>唐僧</label><br/>
+		<input type="radio" name="answer" value="4" onclick="change()"/><label>孙悟空</label><br/>
+		<input type="radio" name="answer" value="3" onclick="change()"/><label>猪八戒</label><br/>
+		<input type="radio" name="answer" value="2" onclick="change()"/><label>沙僧</label><br/>
+		<input type="radio" name="answer" value="1" onclick="change()"/><label>白龙马</label><br/>
 	</form>
 	
 </body>
