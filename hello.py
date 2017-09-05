@@ -14,8 +14,11 @@ db=web.database(dbn='postgres',user='postgres',pw='akefeifei',db='ppt')
 ##GLOBAL PARAM
 global stu_id
 stu_id=0
-global page_no
-page_no=1
+global list_value
+list_value=0
+global reason1_value
+reason1_value=0
+
 
 ##vpass = form.regexp(r".{3,20}$", 'must be between 3 and 20 characters')
 ##vname = form.regexp(r".{1,10}$", '名字长度不可为空，也不可超过10个字。')
@@ -50,6 +53,7 @@ page_no=1
 urls=(
     '/list','list',
     '/index','index',
+    '/mainreason','mainreason',
     '/result','result'
       )
 
@@ -63,7 +67,7 @@ class index:
 
     def POST(self):
         
-        global page_no,stu_id
+        global stu_id
         
         i=web.input()
 
@@ -104,7 +108,6 @@ class index:
 
 class list:
     def GET(self):
-        global page_no
 ##        local_no=web.input()
 ##        page_no=int(local_no.get("no"))
 ##        ##itemsvar=dict(id=no.get("no"))
@@ -119,23 +122,39 @@ class list:
         
     def POST(self):
         
-        global page_no,stu_id
+        global stu_id,list_value, reason1_value
         
         i=web.input()
+        list_value=int(i.get("answer"))
+        
         print "****"
         print stu_id
         print "****"
-        n=db.insert('topk_detail',stu_id=stu_id,item_score=i.get("answer"),
-                    item_no=page_no)
-        
-        page_no=page_no+1
         
         print "****"
-        print page_no
+        print list_value
         print "****"
-        string='/list?no='+str(page_no)
-        raise web.seeother('/list')
-    ##render.topk1st(f)
+        
+        raise web.seeother('/mainreason')
+
+class mainreason:
+    def GET(self):
+        global stu_id,list_value, reason1_value
+        
+        i=web.input()
+        
+        print "****"
+        print list_value
+        print "****"
+        return render.list()
+        
+    def POST(self):
+        
+        global stu_id,list_value, reason1_value    
+        
+        raise web.seeother('/mainreason')
+
+
 
 class result:
     def GET(self):
