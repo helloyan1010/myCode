@@ -1,4 +1,25 @@
-
-
-hello,result.
-第一性格：
+$def with(f_list,s_list,t_list)
+<!DOCTYPE HTML>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0"/>
+<html>
+<head>
+ <link rel="stylesheet" href="/static/css/common.css" type="text/css" > 
+ <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script> 
+ <script type="text/javascript" src="/static/js/common.js"></script> 
+</head>
+<body>
+	<div>
+		<img class="topimg" src="/static/pic/img.png"/>
+	</div>
+	$for first in f_list:
+		<div class="result_title">浣犵殑涓昏鎬ф牸鏄細$first.short  $first.long </div>
+		<div class="descrip">$first.description </div>
+	$for second in s_list:
+		<div class="result_title">浣犵殑绗簩鎬ф牸鏄細$second.short  $second.long </div>
+		<div class="descrip">$second.description </div>
+	$for third in t_list:
+		<div class="result_title">浣犵殑绗笁鎬ф牸鏄細$third.short  $third.long </div>
+		<div class="descrip">$third.description </div>
+	
+</body>
+</html>

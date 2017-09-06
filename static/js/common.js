@@ -41,22 +41,6 @@ function submitClick(){
 function losefocus()
 {this.blur()}
 
-function change5(){
-	document.getElementById("r5").checked=true;
-}
-
-function change4(){
-	document.getElementById("r4").checked=true;
-}
-
-function change3(){
-	document.getElementById("r3").checked=true;
-}
-
-function change2(){
-	document.getElementById("r2").checked=true;
-}
-
-function change1(){
-	document.getElementById("r1").checked=true;
+function change(t){
+	t.childNodes[0].checked=true
 }

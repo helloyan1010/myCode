@@ -1,3 +1,4 @@
+$def with(list)
 <!DOCTYPE HTML>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0"/>
 <html>
@@ -10,16 +11,12 @@
 	<div>
 		<img class="topimg" src="/static/pic/img.png"/>
 	</div>
-	<div class="descrip">2. 请问你为什么做出这样的选择？</div>
-	<div class="roleOpt">
-		<form id="myForm" method="post" action="/list">
-			<div class="answer" onclick="change5()"><input id="r5" class="radioAnswer" type="radio" name="answer" value="5" />唐僧</div>
-			<div class="answer" onclick="change4()"><input id="r4" class="radioAnswer" type="radio" name="answer" value="4" />孙悟空</div>
-			<div class="answer" onclick="change3()"><input id="r3" class="radioAnswer" type="radio" name="answer" value="3" />猪八戒</div>
-			<div class="answer" onclick="change2()"><input id="r2" class="radioAnswer" type="radio" name="answer" value="2" />沙僧</div>
-			<div class="answer" onclick="change1()"><input id="r1" class="radioAnswer" type="radio" name="answer" value="1" />白龙马</div>
-		</form>
-	</div>
+	<div class="descrip">2. 请问你选这个的主要原因是？</div>
+	<form id="reasonForm" method="post" action="/mainreason">
+	$for f in list:
+		<div class="answer" onclick="change(this)"><input id="r5" class="radioAnswer" type="radio" name="answer" value="$f.id " />$f.title</div>
+	<div class="nextbtn"><input type="submit" id="nextbtn" name="nextbtn" value="" action="/mainreason" /></div>
+	</form>
 	
 </body>
 </html>

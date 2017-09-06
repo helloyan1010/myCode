@@ -1,24 +1,19 @@
-$def with(form)
+$def with(list)
 <!DOCTYPE HTML>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <html>
 <head>
  <link rel="stylesheet" href="/static/css/common.css" type="text/css" > 
  <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script> 
+ <script type="text/javascript" src="/static/js/test.js"></script> 
 </head>
 <body>
 
-	<div>
-		<br><label><input type="radio" name="S5" value="5"/>非常同意</label></br>
-		<br><label><input type="radio" name="S4" value="4"/>比较同意</label></br>
-		<br><label><input type="radio" name="S3" value="3"/>差不多</label></br>
-		<br><label><input type="radio" name="S2" value="2"/>一点同意</label></br>
-		<br><label><input type="radio" name="S1" value="1"/>不同意</label></br>
-	</div>
-	
-	<h1>Register</h1>
-	<form method="POST">
-		$:form.render()
+	<div class="descrip">1、你有一个机会成为以下的一个角色，会成为这个角色很长时间，它可能是几年、几十年甚至一辈子，选择了就不能更改。因此，选择必须要慎重，要考虑清楚是什么原因让你选择这个角色。</div>
+	<form id="myForm" method="post" action="/mainreason">
+	$for f in list:
+		<div class="answer" onclick="change(this)"><input id="r5" class="radioAnswer" type="radio" name="answer" value="$f.id " />$f.title</div>		
+	<div class="nextbtn"><input type="submit" id="nextbtn" name="nextbtn" value="" action="/list" /></div>
 	</form>
 </body>
 </html>
