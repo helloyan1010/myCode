@@ -5,8 +5,8 @@ from web import form
 import psycopg2
 
 ##ONLY Needed on linux
-reload(sys)
-sys.setdefaultencoding('utf8')
+##reload(sys)
+##sys.setdefaultencoding('utf8')
 
 render = web.template.render('template/') # your templates
 
