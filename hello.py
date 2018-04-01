@@ -44,6 +44,10 @@ class index:
         print i
         
         ## TODO: need to update with openId;
+        ## Get user Info here ,to determine which page should be shown:
+        ## counter=0:insert a new user
+        ## counter!=0: if test not finished last time, go ahead to finish.else, shown the result.
+        ##
         selectvar=dict(name=i.get("username"))
         stus=db.select('students',selectvar,where="name=$name")
         counter=0
@@ -88,7 +92,7 @@ class list:
         list_value=int(i.get("answer"))
         
         print "****"
-        print stu_id
+        print ("STU id is: %d" % (stu_id))
         print "****"
         
         print "****"
@@ -108,14 +112,15 @@ class mainreason:
         print list_value
         print "****"
         
-        selectvar=dict(type=list_value)
-        list=db.select('mainreason',selectvar,where="type=$type")
-        return render.mainreason(list)
+        selectvar=dict(topk_type=list_value)
+        reason_list=db.select('reason_list',selectvar,where="topk_type=$topk_type")
+        return render.mainreason(reason_list)
         
     def POST(self):
         
         global stu_id,list_value, reason1_value
-        
+
+        ## should shown the result 
         i=web.input()
         reason1_value=int(i.get("answer")) 
         
