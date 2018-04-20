@@ -16,6 +16,10 @@ urls = (
     '/wx', 'index',
 )
 
+s="123asd"
+for ch in s:
+    print ch
+
 
 
 if __name__ == '__main__':

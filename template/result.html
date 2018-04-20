@@ -1,4 +1,4 @@
-$def with(f_list,s_list,t_list)
+$def with(topk_result,lists)
 <!DOCTYPE HTML>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0"/>
 <html>
@@ -11,15 +11,11 @@ $def with(f_list,s_list,t_list)
 	<div>
 		<img class="topimg" src="/static/pic/img.png"/>
 	</div>
-	$for first in f_list:
-		<div class="result_title">你的主要性格是：$first.short  $first.long </div>
-		<div class="descrip">$first.description </div>
-	$for second in s_list:
-		<div class="result_title">你的第二性格是：$second.short  $second.long </div>
-		<div class="descrip">$second.description </div>
-	$for third in t_list:
-		<div class="result_title">你的第三性格是：$third.short  $third.long </div>
-		<div class="descrip">$third.description </div>
-	
+	<div class="result_title">测试结果是：$topk_result 型</div>
+	$ c=0
+	$for item in lists:
+	$ c+=1
+		<div class="result_title">你的第$c 性格是：$item.short  $item.long</div>
+		<div class="result_title">$item.description</div>
 </body>
 </html>

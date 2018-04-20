@@ -20,7 +20,8 @@ global list_value
 list_value=0
 global reason1_value
 reason1_value=0
-
+global lists
+lists=[]
 
 urls=(
     '/list','list',
@@ -104,111 +105,88 @@ class list:
 class mainreason:
     def GET(self):
         
-        global stu_id,list_value, reason1_value
+        global stu_id,list_value, reason1_value,topk_result
         
         i=web.input()
         
-        print "****"
+        print "****show the character type from last page.****"
         print list_value
         print "****"
         
-        selectvar=dict(topk_type=list_value)
-        reason_list=db.select('reason_list',selectvar,where="topk_type=$topk_type")
+        selectvar=dict(char_type=list_value)
+        reason_list=db.select('reason_list',selectvar,where="char_type=$char_type")
         return render.mainreason(reason_list)
         
     def POST(self):
         
-        global stu_id,list_value, reason1_value
+        global stu_id,list_value, reason1_value,topk_result
 
         ## should shown the result 
         i=web.input()
-        reason1_value=int(i.get("answer")) 
+        reason1_value=int(i.get("reasonAnswer")) 
         
-        print "****"
+        print "****print the main reason id: ******"
         print reason1_value
         print "****"
+
+        ##get TOPK result from reason id.
+        topk_results=db.query('select topk_result from reason_list where id=$id',vars={'id':reason1_value})
+        for item in topk_results:
+            topk_result=item.topk_result
+            print("TOPK result is: %s" %(topk_result))
+        
+        ##
         
         ##INSERT DB
         
         selectvar=dict(id=stu_id)
-        detail_results=db.select('topk_detail',selectvar,where="stu_id=$id")
+        score_results=db.select('topk_score',selectvar,where="stu_id=$id")
 
         counter=0        
-        for detail in detail_results:
+        for detail in score_results:
             counter=counter+1
             
-        print( "the topk detail counter is : %d" % (counter))
+        print( "the topk score counter is : %d" % (counter))
         
         if(counter==0):
              ## TODO: openId needed.
-            detail_id=db.insert('topk_detail',stu_id=stu_id,role_id=list_value,reason_id=reason1_value)
+            score_id=db.insert('topk_score',stu_id=stu_id,topk_result=topk_result,reason_id=reason1_value)
             
-            print("Insert topk_detail id is: %d" % (stu_id))
+            print("Insert topk_score successfullly! stu_id is: %d" % (stu_id))
         else:            
-            detail_id=db.update('topk_detail',where="stu_id=$id",vars={'id':stu_id},role_id=list_value,reason_id=reason1_value)
+            score_id=db.update('topk_score',where="stu_id=$id",vars={'id':stu_id},topk_result=topk_result,reason_id=reason1_value)
             
-            print("update topk_detail id is: %d" % (stu_id))
-
-        
-        ## 判断类型
-        first_type=0
-        second_type=0
-        third_type=0
-
-        if(list_value==4 ):
-            first_type=1
-            if(reason1_value==1):
-                second_type=2
-            else:
-                second_type=3
-
-        if(list_value==5):
-            first_type=3
-            
-        if(list_value==3):
-            first_type=2
-            
-        if(list_value==2):
-            first_type=4
-            
-        if(list_value==1):
-            first_type=4
+            print("update topk_detail successfully! stu)id is: %d" % (stu_id))
 
         
                 
         ## END
 
-        score_results=db.query('select * from topk_score where stu_id=$id',vars={'id':stu_id})
-
-        counter=0
-        for score in score_results:
-            counter=counter+1
-
-        if(counter==0):
-            score_result=db.insert('topk_score',stu_id=stu_id,first_type=first_type,second_type=second_type,third_type=third_type)
-        else:            
-            score_result=db.update('topk_score',where="stu_id=$id",vars={'id':stu_id},first_type=first_type,second_type=second_type,third_type=third_type)
-        
         
         raise web.seeother('/result')
 
 class result:
     def GET(self):
         
-        global stu_id,list_value, reason1_value
+        global stu_id,list_value, reason1_value,topk_result,lists
+
+        lists=[]
+        print "****print the topk result: ******"
+        print topk_result
+        print "****"
 
         if(stu_id!=0):
-            
-            score_results=db.query('select * from topk_score where stu_id=$id',vars={'id':stu_id})
-
-            for score_result in score_results:
-                first=db.query('select * from topk_type where id=$id',vars={'id':score_result.first_type})
-                second=db.query('select * from topk_type where id=$id',vars={'id':score_result.second_type})
-                third=db.query('select * from topk_type where id=$id',vars={'id':score_result.third_type})
-
-                return render.result(first,second,third)
+            for ch in topk_result:
+                result_items=db.query('select * from topk_type where short=$short',vars={'short':ch})
+                for item in result_items:
+                    lists.append(item)
+                    print item.short
+                    print item.long
+                    print item.description
+            return render.result(topk_result,lists)
         else:
-            return "ERROR: 没有查询到这个人."
+            return "Error: No such person."
+     
 
 
 if __name__=="__main__":
