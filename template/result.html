@@ -11,11 +11,11 @@ $def with(topk_result,lists)
 	<div>
 		<img class="topimg" src="/static/pic/img.png"/>
 	</div>
-	<div class="result_title">测试结果是：$topk_result 型</div>
+	<div class="result_title">您的性格是：$topk_result 型</div>
 	$ c=0
 	$for item in lists:
 	$ c+=1
-		<div class="result_title">你的第$c 性格是：$item.short  $item.long</div>
-		<div class="result_title">$item.description</div>
+		<div class="result_sub_title">你的第$c 性格是：$item.short  $item.long</div>
+		<div class="descrip">$item.description</div>
 </body>
 </html>

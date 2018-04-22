@@ -22,6 +22,7 @@ global reason1_value
 reason1_value=0
 global lists
 lists=[]
+global topk_result
 
 urls=(
     '/list','list',
@@ -38,7 +39,7 @@ class index:
 
     def POST(self):
         
-        global stu_id
+        global stu_id,topk_result
         
         i=web.input()
 
@@ -74,6 +75,7 @@ class index:
                 counter1=0
                 for score in scores:
                     counter1=counter1+1
+                    topk_result=score.topk_result
                 ## TODO: need update params
                 if(counter1==0):
                     raise web.seeother('/list')
@@ -171,6 +173,8 @@ class result:
         global stu_id,list_value, reason1_value,topk_result,lists
 
         lists=[]
+
+        
         print "****print the topk result: ******"
         print topk_result
         print "****"

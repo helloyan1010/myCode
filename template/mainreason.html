@@ -11,10 +11,10 @@ $def with(reason_list)
 	<div>
 		<img class="topimg" src="/static/pic/img.png"/>
 	</div>
-	<div class="descrip">2. 请问你选这个的主要原因是？</div>
+	<div class="descrip">2. 请为上述选择挑一个最接近的原因：</div>
 	<form id="reasonForm" method="post" action="/mainreason">
 	$for f in reason_list:
-		<div class="answer" onclick="change(this)"><input id="r5" class="radioAnswer" type="radio" name="reasonAnswer" value="$f.id " />$f.title</div>
+		<div class="reasonAnswer" onclick="change(this)"><input id="r5" class="radioAnswer" type="radio" name="reasonAnswer" value="$f.id " />$f.title</div>
 	<div class="nextbtn"><input type="submit" id="nextbtn" name="nextbtn" value="" action="/mainreason" /></div>
 	</form>
 	
